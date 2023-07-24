@@ -8,8 +8,8 @@ import { PiWarningCircleFill } from 'react-icons/pi';
 import { useTimeout } from '@mantine/hooks';
 
 export default function FormGit() {
-  const { setData,status,setStatus } = useContext(userContext);
-  const { start } = useTimeout(() => setData(prevState => ({ ...prevState, isEmpty: false })), 3000);
+  const { setData, status, setStatus } = useContext(userContext);
+  const { start } = useTimeout(() => setStatus(prevState => ({ ...prevState, isEmpty: false })), 2500);
 
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -23,7 +23,7 @@ export default function FormGit() {
           if (!res.ok) throw new Error("Failed to send message");
           return res.json();
         }).then(res => setData(res));
-        setStatus(prevState => ({ ...prevState, loading: false, isOK: true }));
+      setStatus(prevState => ({ ...prevState, loading: false, isOK: true }));
     } catch (error) {
       setStatus(prevState => ({ ...prevState, loading: false, isOK: false }));
       console.log(error);
